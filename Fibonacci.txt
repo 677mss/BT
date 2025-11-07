@@ -1,0 +1,59 @@
+RECURSIVE
+
+public class FibRecursive {
+
+    static int step = 0;
+
+    static int fib(int n) {
+        step++;    // count each function call
+        if (n <= 1)
+            return n;
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    public static void main(String[] args) {
+        int n = 6;
+        int result = fib(n);
+
+        System.out.println("Fibonacci = " + result);
+        System.out.println("Step Count = " + step);
+    }
+}
+
+
+ITERATIVE 
+
+public class FibIterative {
+
+    static int fib(int n) {
+        int step = 0;
+
+        if (n <= 1) {
+            step++;
+            System.out.println("Step Count = " + step);
+            return n;
+        }
+
+        int a = 0, b = 1, c = 0;
+        step += 2;   // initialization
+
+        for (int i = 2; i <= n; i++) {
+            c = a + b;
+            step++;      // addition
+
+            a = b;
+            b = c;
+            step += 2;   // assignments
+        }
+
+        System.out.println("Step Count = " + step);
+        return c;
+    }
+
+    public static void main(String[] args) {
+        int n = 6;
+        int result = fib(n);
+
+        System.out.println("Fibonacci = " + result);
+    }
+}
