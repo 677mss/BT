@@ -1,59 +1,44 @@
 RECURSIVE
 
-public class FibRecursive {
+public class FibonacciRecursive {
+    static int steps = 0; // counter
 
-    static int step = 0;
-
-    static int fib(int n) {
-        step++;    // count each function call
+    static int fibonacci(int n) {
+        steps++; // count each call
         if (n <= 1)
             return n;
-        return fib(n - 1) + fib(n - 2);
+        return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
     public static void main(String[] args) {
-        int n = 6;
-        int result = fib(n);
-
-        System.out.println("Fibonacci = " + result);
-        System.out.println("Step Count = " + step);
-    }
+        int n = 10;
+        System.out.print("Fibonacci Series: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+        System.out.println("\nTotal steps (recursive calls): " + steps);
+    }
 }
-
 
 ITERATIVE 
 
-public class FibIterative {
+public class FibonacciIterative {
+    public static void main(String[] args) {
+        int n = 10;
+        int a = 0, b = 1, steps = 0;
 
-    static int fib(int n) {
-        int step = 0;
+        System.out.print("Fibonacci Series: " + a + " " + b);
+        steps += 2; // two initial numbers
 
-        if (n <= 1) {
-            step++;
-            System.out.println("Step Count = " + step);
-            return n;
-        }
-
-        int a = 0, b = 1, c = 0;
-        step += 2;   // initialization
-
-        for (int i = 2; i <= n; i++) {
-            c = a + b;
-            step++;      // addition
-
+        for (int i = 2; i < n; i++) {
+            int c = a + b;
+            System.out.print(" " + c);
             a = b;
             b = c;
-            step += 2;   // assignments
+            steps++; // count loop step
         }
 
-        System.out.println("Step Count = " + step);
-        return c;
-    }
-
-    public static void main(String[] args) {
-        int n = 6;
-        int result = fib(n);
-
-        System.out.println("Fibonacci = " + result);
-    }
+        System.out.println("\nTotal steps: " + steps);
+    }
 }
+
